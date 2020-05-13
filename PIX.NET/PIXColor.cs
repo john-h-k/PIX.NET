@@ -40,6 +40,6 @@ namespace PIX.NET
         /// </summary>
         public byte B;
 
-        internal static uint GetAs32BitArgb(PIXColor color) => Unsafe.As<PIXColor, uint>(ref color);
+        internal static uint GetAs32BitArgb(in PIXColor color) => Unsafe.As<PIXColor, uint>(ref Unsafe.AsRef(in color));
         }
 }
