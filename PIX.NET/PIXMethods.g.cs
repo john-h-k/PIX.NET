@@ -31,7 +31,7 @@ using static PIX.NET.PIXEncoding;
  *    - EventEncoding | Color | [Optional: Only present on CPU] Context | Format String | [optional varargs...]
  *
  *    - The EventEncoding, Color, and Format String are mandatory. I'm not sure how it behaves with a null format string. Should probably find out
- *    - Every thing except the format string and any varargs which are string (char*, wchar_t*) is 8 bytes
+ *    - Every thing except the format string and any varargs which are string (char*, wchar_t*) are 8 bytes
  *    - Strings have an 8 byte header that defines the alignment, what size chunks it was copied in (so it can trim excess data), whether it is ansi,
  *      and a isShortcut bool that is unused currently. They are null terminated with 8 bytes of 0
  *    - String copying is done in chunks if PIX_ENABLE_BLOCK_ARGUMENT_COPY is defined, but this can (safely) over-read data on windows. Need to determine if this is ok in managed code
@@ -48,7 +48,8 @@ using static PIX.NET.PIXEncoding;
  * 
  * We rewrite in PIXEncoding.RewriteEncoding, and PIXEncoding.IsVarargs
  * - We strip out the timestamp as it is only relevant to the CPU
- * - We check if the 
+ * - We check if the event has varargs, and if so, make the new one have varargs too
+ * - We add context flag if applicable (on XBOX)
  * 
  * This is more efficient than rewriting the format strings and args to be earlier, as these are likely to be >16 bytes.
  *
@@ -71,7 +72,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -95,7 +96,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -122,7 +123,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -151,7 +152,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -182,7 +183,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -215,7 +216,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -250,7 +251,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -287,7 +288,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -326,7 +327,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -367,7 +368,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -410,7 +411,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -455,7 +456,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -502,7 +503,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -551,7 +552,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -602,7 +603,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -655,7 +656,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -710,7 +711,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -751,7 +752,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -776,7 +777,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -804,7 +805,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -834,7 +835,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -866,7 +867,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -900,7 +901,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -936,7 +937,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -974,7 +975,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1014,7 +1015,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1056,7 +1057,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1100,7 +1101,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1146,7 +1147,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1194,7 +1195,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1244,7 +1245,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1296,7 +1297,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1350,7 +1351,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1406,7 +1407,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1447,7 +1448,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1472,7 +1473,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1487,7 +1488,7 @@ namespace PIX.NET
 
             *destination = 0UL;
 
-            PIXEvents.BeginEvent(context, buffer, 4 + 1 + ((uint)formatString.Length + 7) / 8, thread, time);
+            PIXEvents.BeginEvent(context, buffer, (uint)(buffer - destination), thread, time);
         }
 
         [Conditional("DEBUG")]
@@ -1500,7 +1501,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1530,7 +1531,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1562,7 +1563,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1596,7 +1597,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1632,7 +1633,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1670,7 +1671,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1710,7 +1711,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1752,7 +1753,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1796,7 +1797,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1842,7 +1843,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1890,7 +1891,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1940,7 +1941,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -1992,7 +1993,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2046,7 +2047,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2102,7 +2103,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2142,7 +2143,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2166,7 +2167,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2193,7 +2194,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2222,7 +2223,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2253,7 +2254,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2286,7 +2287,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2321,7 +2322,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2358,7 +2359,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2397,7 +2398,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2438,7 +2439,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2481,7 +2482,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2526,7 +2527,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2573,7 +2574,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2622,7 +2623,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2673,7 +2674,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2726,7 +2727,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2781,7 +2782,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2822,7 +2823,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2847,7 +2848,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2875,7 +2876,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2905,7 +2906,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2937,7 +2938,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -2971,7 +2972,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3007,7 +3008,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3045,7 +3046,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3085,7 +3086,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3127,7 +3128,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3171,7 +3172,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3217,7 +3218,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3265,7 +3266,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3315,7 +3316,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3367,7 +3368,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3421,7 +3422,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3477,7 +3478,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3518,7 +3519,7 @@ namespace PIX.NET
             ReadOnlySpan<char> formatString
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3543,7 +3544,7 @@ namespace PIX.NET
             T0 t0
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3571,7 +3572,7 @@ namespace PIX.NET
             T1 t1
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3601,7 +3602,7 @@ namespace PIX.NET
             T2 t2
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3633,7 +3634,7 @@ namespace PIX.NET
             T3 t3
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3667,7 +3668,7 @@ namespace PIX.NET
             T4 t4
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3703,7 +3704,7 @@ namespace PIX.NET
             T5 t5
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3741,7 +3742,7 @@ namespace PIX.NET
             T6 t6
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3781,7 +3782,7 @@ namespace PIX.NET
             T7 t7
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3823,7 +3824,7 @@ namespace PIX.NET
             T8 t8
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3867,7 +3868,7 @@ namespace PIX.NET
             T9 t9
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3913,7 +3914,7 @@ namespace PIX.NET
             T10 t10
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -3961,7 +3962,7 @@ namespace PIX.NET
             T11 t11
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4011,7 +4012,7 @@ namespace PIX.NET
             T12 t12
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4063,7 +4064,7 @@ namespace PIX.NET
             T13 t13
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4117,7 +4118,7 @@ namespace PIX.NET
             T14 t14
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4173,7 +4174,7 @@ namespace PIX.NET
             T15 t15
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4211,7 +4212,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void EndEvent()
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4229,7 +4230,7 @@ namespace PIX.NET
             ID3D12CommandQueue* context
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
@@ -4248,7 +4249,7 @@ namespace PIX.NET
             ID3D12GraphicsCommandList* context
         )
         {
-            var thread = PIXEvents.PIXRetrieveTimeData(out ulong time);
+            var thread = PIXEvents.RetrieveTimeData(out ulong time);
 
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;

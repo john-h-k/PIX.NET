@@ -7,7 +7,7 @@ using TerraFX.Interop;
 
 namespace PIX.NET
 {
-    internal static unsafe class NativeMethods
+    public static unsafe class NativeMethods
     {
         /*
          *
@@ -107,7 +107,7 @@ namespace PIX.NET
             bool getEarliestTime
         );
 
-        internal static ulong PIXEventsReplaceBlock(
+        public static ulong PIXEventsReplaceBlock(
             PIXEventsThreadInfo* threadInfo,
             bool getEarliestTime
         )
@@ -119,7 +119,7 @@ namespace PIX.NET
         [DllImport(LibraryName, EntryPoint = "PIXGetThreadInfo")]
         private static extern PIXEventsThreadInfo* _PIXGetThreadInfo();
 
-        internal static PIXEventsThreadInfo* PIXGetThreadInfo()
+        public static PIXEventsThreadInfo* PIXGetThreadInfo()
         {
             var info = _PIXGetThreadInfo();
             Debug.Assert(info != null, "uh oh");

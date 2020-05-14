@@ -123,9 +123,8 @@ namespace PIX.NET
             EndGPUEventOnContext(context);
         }
 
-        internal static PIXEventsThreadInfo* PIXRetrieveTimeData(out ulong time)
+        internal static PIXEventsThreadInfo* RetrieveTimeData(out ulong time)
         {
-            
             PIXEventsThreadInfo* threadInfo = PIXGetThreadInfo();
             ulong* destination = threadInfo->Destination;
             ulong* limit = threadInfo->BiasedLimit;
@@ -134,7 +133,7 @@ namespace PIX.NET
             {
                 time = PIXGetTimestampCounter();
             }
-            else if (limit != null) // old block is full. get a fresh spanking new one
+            else if (limit != null) // old block is full. get a fresh new one
             {
                 time = PIXEventsReplaceBlock(threadInfo, false);
             }
@@ -142,7 +141,6 @@ namespace PIX.NET
             {
                 // cpu capture isn't occuring
                 time = default;
-                return null;
             }
 
             return threadInfo;
@@ -154,15 +152,12 @@ namespace PIX.NET
          * The if else if won't be entered if CPU capture isn't occuring (PIXGetThreadInfo will return an empty struct)
          */
         private static void SerializeForCpuCapture(
-            ulong* args, 
-            uint argsLength, 
-            PIXEventsThreadInfo* threadInfo, 
+            ulong* args,
+            uint argsLength,
+            PIXEventsThreadInfo* threadInfo,
             ulong time
-        )    
+        )
         {
-            Debug.Assert(threadInfo != null, "jeepers scooby! something is horrifically wrong!!");
-            // this is probably caused by a internal WinPixEventRuntime issue or a bad reassignment
-            
             ulong* destination = threadInfo->Destination;
             ulong* limit = threadInfo->BiasedLimit;
             if (CanWrite(destination, limit))
@@ -197,7 +192,6 @@ namespace PIX.NET
                 threadInfo->Destination = destination;
             }
         }
-
 
         // Copies the 8 byte args between mem and corrects offsets dest
         private static void CopyArgs(

@@ -4,7 +4,7 @@
     {
         public static PIXEventType BeginEvent(uint length, bool hasContext)
         {
-            if (!hasContext)
+            if (!hasContext || PIXEncoding.IsXbox)
             {
                 return length == 0 ? PIXEventType.BeginEventNoArgs : PIXEventType.BeginEventVarArgs;
             }
@@ -13,7 +13,7 @@
 
         public static PIXEventType SetMarker(uint length, bool hasContext)
         {
-            if (!hasContext)
+            if (!hasContext || PIXEncoding.IsXbox)
             {
                 return length == 0 ? PIXEventType.SetMarkerNoArgs : PIXEventType.SetMarkerVarArgs;
             }

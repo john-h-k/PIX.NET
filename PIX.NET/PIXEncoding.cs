@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.X86;
 using TerraFX.Interop;
 
 namespace PIX.NET
@@ -22,13 +24,13 @@ namespace PIX.NET
 
         public const ulong EventsReservedRecordSpaceQwords = 64;
 
-        //this is used to make sure SSE string copy always will end 16-byte write in the current block
-        //this way only a check if CanWrite(destination, limit) can be performed, instead of CanWrite(destination, limit) - 1
-        //since both these are ulong* and SSE writes in 16 byte chunks, 8 bytes are kept in reserve
-        //so even if SSE overwrites 8 extra bytes, those will still belong to the correct block
-        //on next iteration check destination will be greater than limit
-        //this is used as well for fixed size UMD events and EndEvent since these require less space
-        //than other variable length user events and do not need big reserved space
+        // this is used to make sure SSE string copy always will end 16-byte write in the current block
+        // this way only a check if CanWrite(destination, limit) can be performed, instead of CanWrite(destination, limit) - 1
+        // since both these are ulong* and SSE writes in 16 byte chunks, 8 bytes are kept in reserve
+        // so even if SSE overwrites 8 extra bytes, those will still belong to the correct block
+        // on next iteration check destination will be greater than limit
+        // this is used as well for fixed size UMD events and EndEvent since these require less space
+        // than other variable length user events and do not need big reserved space
         public const ulong EventsReservedTailSpaceQwords = 2;
 
         public const ulong EventsSafeFastCopySpaceQwords =
@@ -84,17 +86,24 @@ namespace PIX.NET
             }
         }
 
+        private static bool IsStringType<T>()
+        {
+            return typeof(T) == typeof(string)
+                   || typeof(T) == typeof(ReadOnlySpan<char>)
+                   || typeof(T) == typeof(Span<char>)
+                   || typeof(T) == typeof(ReadOnlyMemory<char>)
+                   || typeof(T) == typeof(Memory<char>);
+        }
+
         internal static void Write<T>(ref ulong* destination, ulong* limit, T obj)
         {
             Debug.Assert(obj is object);
 
             if (CanWrite(destination, limit))
             {
-                if (typeof(T) == typeof(string)
-                    || typeof(T) == typeof(ReadOnlySpan<char>) // not currently supported but in case it ever is
-                    || typeof(T) == typeof(ReadOnlyMemory<char>))
+                if (IsStringType<T>())
                 {
-                    fixed (char* p = &GetRefChar(obj))
+                    fixed (char* p = &GetDataRef(obj))
                     {
                         CopyEventArgument(ref destination, limit, p);
                     }
@@ -106,7 +115,7 @@ namespace PIX.NET
             }
         }
 
-        private static ref readonly char GetRefChar<T>(T obj)
+        private static ref readonly char GetDataRef<T>(T obj)
         {
             Debug.Assert(obj is object);
 
@@ -115,13 +124,24 @@ namespace PIX.NET
                 return ref ((string) (object) obj).GetPinnableReference();
             }
 
+            if (typeof(T) == typeof(Memory<char>))
+            {
+                return ref ((ReadOnlyMemory<char>) (object) obj).Span.GetPinnableReference();
+            }
             if (typeof(T) == typeof(ReadOnlyMemory<char>))
             {
                 return ref ((ReadOnlyMemory<char>) (object) obj).Span.GetPinnableReference();
             }
 
+            if (typeof(T) == typeof(Span<char>)) // not currently supported but in case it ever is
+            {
+                Environment.FailFast("uncomment line below and recompile");
+                //return ref ((Span<char>) (object) obj).Span.GetPinnableReference();
+            }
+
             if (typeof(T) == typeof(ReadOnlySpan<char>)) // not currently supported but in case it ever is
             {
+                Environment.FailFast("uncomment line below and recompile");
                 //return ref ((ReadOnlySpan<char>) (object) obj).GetPinnableReference();
             }
 
@@ -133,9 +153,9 @@ namespace PIX.NET
             Debug.Assert(obj is object);
             if (RuntimeHelpers.IsReferenceOrContainsReferences<T>())
             {
-                ThrowHelper.ThrowArgumentException("Managed type cannot be written to PIX");
+                ThrowHelper.ThrowArgumentException("Managed type that isn't [ReadOnly]Span<char>, [ReadOnly]Memory<char>, or string cannot be written to PIX");
             }
-
+            
 #if !ALLOW_PIX_OVERRUNS
             if (Unsafe.SizeOf<T>() > sizeof(ulong))
             {
@@ -149,6 +169,7 @@ namespace PIX.NET
                 return (ulong) BitConverter.DoubleToInt64Bits((float) (object) obj);
             }
 
+            // Signed types need to be sign extended
             if (typeof(T) == typeof(sbyte))
             {
                 return (ulong) (sbyte) (object) obj;
@@ -189,6 +210,10 @@ namespace PIX.NET
                 return Unsafe.As<T, ulong>(ref obj);
             }
 
+#if !FORBID_NON_PRIMITIVES
+            ThrowHelper.ThrowArgumentException($"Cannot serialize non primitive type \"{typeof(T)}\"");
+#endif
+            
             ulong value = default;
             Unsafe.Write(&value, obj);
             return value;
@@ -349,17 +374,19 @@ namespace PIX.NET
         // i am sorry for this code. i should probably move all this stuff up instead of bit twiddling based off the old CPU encoded event
         private static void RewriteEncodedEvent(void* data, PIXEventType noargNoContextType)
         {
+            // the arg is the "base" event type, e.g BeginEvent_NoArgs. we add varargs and context if applicable
+        
             // we read the event
-            // if it is vararg, we make the param event type vararg
-            // if we are on xbox, we mask it to make it HasContext as required
+            // if it is vararg, we make the param event type vararg (add -1, VarArgsOffset)
+            // if we are on xbox, we mask it to make it with HasContext as required
             // we then shift it back into place. we don't call EncodeEvent as we don't have a timestamp so there is just no need
             ulong* pData = (ulong*) data;
 #if PIX_XBOX
-            const int mask = PIXEventType.HasContext;
+            const PIXEventType mask = PIXEventType.HasContext;
 #else
             const int mask = 0x00;
 #endif
-            pData[0] = (ulong)((noargNoContextType - (IsVarargs(pData[0]) ? PIXEventType.VarArgsOffset : 0)) | mask) << EventsTypeBitShift;
+            pData[0] = (ulong)((noargNoContextType + (IsVarargs(pData[0]) ? (int)PIXEventType.VarArgsOffset : 0)) | mask) << EventsTypeBitShift;
         }
         
         private static void AdjustPointerForContext(ref void* data, ref uint size)
@@ -387,7 +414,8 @@ namespace PIX.NET
         
         public static void SetGPUMarkerOnContext(
             ID3D12GraphicsCommandList* commandList,
-            void* data, uint size
+            void* data, 
+            uint size
         )
         {
             AdjustPointerForContext(ref data, ref size);
@@ -462,12 +490,10 @@ namespace PIX.NET
         public static void WriteContext(ref ulong* destination, ulong* limit, void* context)
         {
             // Context is not used on xbox
-#if !PIX_XBOX
-            if (CanWrite(destination, limit))
+            if (CanWrite(destination, limit) && !IsXbox)
             {
                 *destination++ = (ulong) context;
             }
-#endif
         }
     }
 }
