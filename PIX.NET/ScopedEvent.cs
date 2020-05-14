@@ -40,6 +40,13 @@ namespace PIX.NET
             Queue
         }
 
+        [Conditional("VERIFY")]
+        private static void VerifyCom(void* p, Guid iid)
+        {
+            void* _;
+            Debug.Assert(Windows.SUCCEEDED(((IUnknown*) p)->QueryInterface(&iid, &_)));
+        }
+
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public void EndEvent()
@@ -47,10 +54,12 @@ namespace PIX.NET
             Debug.Assert(_context != null || _type == ContextType.None);
             if (_type == ContextType.List)
             {
+                VerifyCom(_context, D3D12.IID_ID3D12GraphicsCommandList);
                 PIXMethods.EndEvent((ID3D12GraphicsCommandList*) _context);
             }
             else if (_type == ContextType.Queue)
             {
+                VerifyCom(_context, D3D12.IID_ID3D12CommandQueue);
                 PIXMethods.EndEvent((ID3D12CommandQueue*) _context);
             }
             else if (_type != ContextType.None)

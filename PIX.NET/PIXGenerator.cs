@@ -1,4 +1,0 @@
-﻿namespace PIX.NET
-{
-    // TODO
-}
