@@ -46,7 +46,7 @@ namespace PIX.NET
         /// <param name="message"></param>
         public static void BeginEventOnCommandList(
             ID3D12GraphicsCommandList* commandList,
-            PIXColor color,
+            Argb32 color,
             ReadOnlySpan<char> message
         )
         {
@@ -54,7 +54,7 @@ namespace PIX.NET
             var buff = StackSentinel.SafeToStackalloc<byte>(length) ? stackalloc byte[length] : new byte[length];
             System.Text.Encoding.UTF8.GetBytes(message, buff);
 
-            var hr = _PIXBeginEventOnCommandList(commandList, PIXColor.GetAs32BitArgb(color),
+            var hr = _PIXBeginEventOnCommandList(commandList, Argb32.GetAs32BitArgb(color),
                 (byte*) Unsafe.AsPointer(ref MemoryMarshal.GetReference(buff)));
 
             ThrowHelper.ThrowIfFailed(hr);
@@ -70,7 +70,7 @@ namespace PIX.NET
         
         public static void SetMarkerOnCommandList(
             ID3D12GraphicsCommandList* commandList,
-            PIXColor color,
+            Argb32 color,
             ReadOnlySpan<char> message
         )
         {
@@ -78,7 +78,7 @@ namespace PIX.NET
             var buff = StackSentinel.SafeToStackalloc<byte>(length) ? stackalloc byte[length] : new byte[length];
             System.Text.Encoding.UTF8.GetBytes(message, buff);
 
-            var hr = _PIXSetMarkerOnCommandList(commandList, PIXColor.GetAs32BitArgb(color),
+            var hr = _PIXSetMarkerOnCommandList(commandList, Argb32.GetAs32BitArgb(color),
                 (byte*) Unsafe.AsPointer(ref MemoryMarshal.GetReference(buff)));
 
             ThrowHelper.ThrowIfFailed(hr);

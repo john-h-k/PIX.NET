@@ -5,7 +5,7 @@ namespace PIX.NET
     /// <summary>
     /// Represents a 32 bit ARGB color used by PIX where A must be 0xFF
     /// </summary>
-    public partial struct PIXColor
+    public partial struct Argb32
     {
         /// <summary>
         /// Creates a new instance from 3 separate RGB values
@@ -13,7 +13,7 @@ namespace PIX.NET
         /// <param name="r">The red component of the color</param>
         /// <param name="g">The green component of the color</param>
         /// <param name="b">The blue component of the color</param>
-        public PIXColor(byte r = 0, byte g = 0, byte b = 0)
+        public Argb32(byte r = 0, byte g = 0, byte b = 0)
         {
             R = r;
             G = g;
@@ -45,7 +45,7 @@ namespace PIX.NET
         /// </summary>
         /// <param name="i">The value between 0 and 255 inclusive</param>
         /// <returns>A unique color</returns>
-        public static PIXColor FromIndex(byte i)
+        public static Argb32 FromIndex(byte i)
         {
             const int redMask =   0b11100000;
             const int greenMask = 0b00011000;
@@ -55,9 +55,9 @@ namespace PIX.NET
             int green = i & greenMask;
             int blue = i & blueMask;
             
-            return new PIXColor((byte)red, (byte)green, (byte)blue);
+            return new Argb32((byte)red, (byte)green, (byte)blue);
         }
 
-        internal static uint GetAs32BitArgb(in PIXColor color) => Unsafe.As<PIXColor, uint>(ref Unsafe.AsRef(in color));
+        internal static uint GetAs32BitArgb(in Argb32 color) => Unsafe.As<Argb32, uint>(ref Unsafe.AsRef(in color));
         }
 }

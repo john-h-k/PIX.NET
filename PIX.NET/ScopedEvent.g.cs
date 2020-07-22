@@ -9,7 +9,7 @@ namespace PIX.NET
     public readonly unsafe partial struct ScopedEvent : IDisposable
     {
         public static ScopedEvent Create(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -20,7 +20,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -32,7 +32,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -45,7 +45,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -59,7 +59,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -74,7 +74,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -90,7 +90,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -107,7 +107,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -125,7 +125,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -144,7 +144,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -164,7 +164,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -185,7 +185,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -207,7 +207,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -230,7 +230,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -254,7 +254,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -279,7 +279,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -305,7 +305,7 @@ namespace PIX.NET
 
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -334,7 +334,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -346,7 +346,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -359,7 +359,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -373,7 +373,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -388,7 +388,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -404,7 +404,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -421,7 +421,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -439,7 +439,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -458,7 +458,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -478,7 +478,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -499,7 +499,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -521,7 +521,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -544,7 +544,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -568,7 +568,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -593,7 +593,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -620,7 +620,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -648,7 +648,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -677,7 +677,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -689,7 +689,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -702,7 +702,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -716,7 +716,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -731,7 +731,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -747,7 +747,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -764,7 +764,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -782,7 +782,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -801,7 +801,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -821,7 +821,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -842,7 +842,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -864,7 +864,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -887,7 +887,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -911,7 +911,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -936,7 +936,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -963,7 +963,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -991,7 +991,7 @@ namespace PIX.NET
 
         public static ScopedEvent Create<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,

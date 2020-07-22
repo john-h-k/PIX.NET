@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using TerraFX.Interop;
-using static PIX.NET.PIXEncoding;
+using static PIX.NET.Encoding;
 
 namespace PIX.NET
 {
@@ -11,7 +11,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -20,7 +20,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(0, false)));
             Write(ref destination, limit, colorVal);
@@ -34,7 +34,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -44,7 +44,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(1, false)));
             Write(ref destination, limit, colorVal);
@@ -60,7 +60,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -71,7 +71,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(2, false)));
             Write(ref destination, limit, colorVal);
@@ -88,7 +88,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -100,7 +100,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(3, false)));
             Write(ref destination, limit, colorVal);
@@ -118,7 +118,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -131,7 +131,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(4, false)));
             Write(ref destination, limit, colorVal);
@@ -150,7 +150,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -164,7 +164,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(5, false)));
             Write(ref destination, limit, colorVal);
@@ -184,7 +184,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -199,7 +199,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(6, false)));
             Write(ref destination, limit, colorVal);
@@ -220,7 +220,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -236,7 +236,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(7, false)));
             Write(ref destination, limit, colorVal);
@@ -258,7 +258,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -275,7 +275,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(8, false)));
             Write(ref destination, limit, colorVal);
@@ -298,7 +298,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -316,7 +316,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(9, false)));
             Write(ref destination, limit, colorVal);
@@ -340,7 +340,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -359,7 +359,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(10, false)));
             Write(ref destination, limit, colorVal);
@@ -384,7 +384,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -404,7 +404,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(11, false)));
             Write(ref destination, limit, colorVal);
@@ -430,7 +430,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -451,7 +451,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(12, false)));
             Write(ref destination, limit, colorVal);
@@ -478,7 +478,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -500,7 +500,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(13, false)));
             Write(ref destination, limit, colorVal);
@@ -528,7 +528,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -551,7 +551,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(14, false)));
             Write(ref destination, limit, colorVal);
@@ -580,7 +580,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -604,7 +604,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(15, false)));
             Write(ref destination, limit, colorVal);
@@ -634,7 +634,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -659,7 +659,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(16, false)));
             Write(ref destination, limit, colorVal);
@@ -691,7 +691,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -700,7 +700,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(0, true)));
             Write(ref destination, limit, colorVal);
@@ -715,7 +715,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -725,7 +725,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(1, true)));
             Write(ref destination, limit, colorVal);
@@ -742,7 +742,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -753,7 +753,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(2, true)));
             Write(ref destination, limit, colorVal);
@@ -771,7 +771,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -783,7 +783,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(3, true)));
             Write(ref destination, limit, colorVal);
@@ -802,7 +802,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -815,7 +815,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(4, true)));
             Write(ref destination, limit, colorVal);
@@ -835,7 +835,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -849,7 +849,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(5, true)));
             Write(ref destination, limit, colorVal);
@@ -870,7 +870,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -885,7 +885,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(6, true)));
             Write(ref destination, limit, colorVal);
@@ -907,7 +907,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -923,7 +923,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(7, true)));
             Write(ref destination, limit, colorVal);
@@ -946,7 +946,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -963,7 +963,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(8, true)));
             Write(ref destination, limit, colorVal);
@@ -987,7 +987,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1005,7 +1005,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(9, true)));
             Write(ref destination, limit, colorVal);
@@ -1030,7 +1030,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1049,7 +1049,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(10, true)));
             Write(ref destination, limit, colorVal);
@@ -1075,7 +1075,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1095,7 +1095,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(11, true)));
             Write(ref destination, limit, colorVal);
@@ -1122,7 +1122,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1143,7 +1143,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(12, true)));
             Write(ref destination, limit, colorVal);
@@ -1171,7 +1171,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1193,7 +1193,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(13, true)));
             Write(ref destination, limit, colorVal);
@@ -1222,7 +1222,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1245,7 +1245,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(14, true)));
             Write(ref destination, limit, colorVal);
@@ -1275,7 +1275,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1299,7 +1299,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(15, true)));
             Write(ref destination, limit, colorVal);
@@ -1330,7 +1330,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1355,7 +1355,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(16, true)));
             Write(ref destination, limit, colorVal);
@@ -1387,7 +1387,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -1396,7 +1396,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(0, true)));
             Write(ref destination, limit, colorVal);
@@ -1411,7 +1411,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -1421,7 +1421,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(1, true)));
             Write(ref destination, limit, colorVal);
@@ -1438,7 +1438,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -1449,7 +1449,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(2, true)));
             Write(ref destination, limit, colorVal);
@@ -1467,7 +1467,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1479,7 +1479,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(3, true)));
             Write(ref destination, limit, colorVal);
@@ -1498,7 +1498,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1511,7 +1511,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(4, true)));
             Write(ref destination, limit, colorVal);
@@ -1531,7 +1531,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1545,7 +1545,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(5, true)));
             Write(ref destination, limit, colorVal);
@@ -1566,7 +1566,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1581,7 +1581,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(6, true)));
             Write(ref destination, limit, colorVal);
@@ -1603,7 +1603,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1619,7 +1619,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(7, true)));
             Write(ref destination, limit, colorVal);
@@ -1642,7 +1642,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1659,7 +1659,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(8, true)));
             Write(ref destination, limit, colorVal);
@@ -1683,7 +1683,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1701,7 +1701,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(9, true)));
             Write(ref destination, limit, colorVal);
@@ -1726,7 +1726,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1745,7 +1745,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(10, true)));
             Write(ref destination, limit, colorVal);
@@ -1771,7 +1771,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1791,7 +1791,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(11, true)));
             Write(ref destination, limit, colorVal);
@@ -1818,7 +1818,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1839,7 +1839,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(12, true)));
             Write(ref destination, limit, colorVal);
@@ -1867,7 +1867,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1889,7 +1889,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(13, true)));
             Write(ref destination, limit, colorVal);
@@ -1918,7 +1918,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1941,7 +1941,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(14, true)));
             Write(ref destination, limit, colorVal);
@@ -1971,7 +1971,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -1995,7 +1995,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(15, true)));
             Write(ref destination, limit, colorVal);
@@ -2026,7 +2026,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void BeginEvent<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2051,7 +2051,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.BeginEvent(16, true)));
             Write(ref destination, limit, colorVal);
@@ -2082,7 +2082,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -2091,7 +2091,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(0, false)));
             Write(ref destination, limit, colorVal);
@@ -2105,7 +2105,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -2115,7 +2115,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(1, false)));
             Write(ref destination, limit, colorVal);
@@ -2131,7 +2131,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -2142,7 +2142,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(2, false)));
             Write(ref destination, limit, colorVal);
@@ -2159,7 +2159,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2171,7 +2171,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(3, false)));
             Write(ref destination, limit, colorVal);
@@ -2189,7 +2189,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2202,7 +2202,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(4, false)));
             Write(ref destination, limit, colorVal);
@@ -2221,7 +2221,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2235,7 +2235,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(5, false)));
             Write(ref destination, limit, colorVal);
@@ -2255,7 +2255,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2270,7 +2270,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(6, false)));
             Write(ref destination, limit, colorVal);
@@ -2291,7 +2291,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2307,7 +2307,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(7, false)));
             Write(ref destination, limit, colorVal);
@@ -2329,7 +2329,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2346,7 +2346,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(8, false)));
             Write(ref destination, limit, colorVal);
@@ -2369,7 +2369,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2387,7 +2387,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(9, false)));
             Write(ref destination, limit, colorVal);
@@ -2411,7 +2411,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2430,7 +2430,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(10, false)));
             Write(ref destination, limit, colorVal);
@@ -2455,7 +2455,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2475,7 +2475,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(11, false)));
             Write(ref destination, limit, colorVal);
@@ -2501,7 +2501,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2522,7 +2522,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(12, false)));
             Write(ref destination, limit, colorVal);
@@ -2549,7 +2549,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2571,7 +2571,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(13, false)));
             Write(ref destination, limit, colorVal);
@@ -2599,7 +2599,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2622,7 +2622,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(14, false)));
             Write(ref destination, limit, colorVal);
@@ -2651,7 +2651,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2675,7 +2675,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(15, false)));
             Write(ref destination, limit, colorVal);
@@ -2705,7 +2705,7 @@ namespace PIX.NET
         [Conditional("DEBUG")]
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2730,7 +2730,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(16, false)));
             Write(ref destination, limit, colorVal);
@@ -2762,7 +2762,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -2771,7 +2771,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(0, true)));
             Write(ref destination, limit, colorVal);
@@ -2786,7 +2786,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -2796,7 +2796,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(1, true)));
             Write(ref destination, limit, colorVal);
@@ -2813,7 +2813,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -2824,7 +2824,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(2, true)));
             Write(ref destination, limit, colorVal);
@@ -2842,7 +2842,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2854,7 +2854,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(3, true)));
             Write(ref destination, limit, colorVal);
@@ -2873,7 +2873,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2886,7 +2886,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(4, true)));
             Write(ref destination, limit, colorVal);
@@ -2906,7 +2906,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2920,7 +2920,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(5, true)));
             Write(ref destination, limit, colorVal);
@@ -2941,7 +2941,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2956,7 +2956,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(6, true)));
             Write(ref destination, limit, colorVal);
@@ -2978,7 +2978,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -2994,7 +2994,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(7, true)));
             Write(ref destination, limit, colorVal);
@@ -3017,7 +3017,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3034,7 +3034,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(8, true)));
             Write(ref destination, limit, colorVal);
@@ -3058,7 +3058,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3076,7 +3076,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(9, true)));
             Write(ref destination, limit, colorVal);
@@ -3101,7 +3101,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3120,7 +3120,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(10, true)));
             Write(ref destination, limit, colorVal);
@@ -3146,7 +3146,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3166,7 +3166,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(11, true)));
             Write(ref destination, limit, colorVal);
@@ -3193,7 +3193,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3214,7 +3214,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(12, true)));
             Write(ref destination, limit, colorVal);
@@ -3242,7 +3242,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3264,7 +3264,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(13, true)));
             Write(ref destination, limit, colorVal);
@@ -3293,7 +3293,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3316,7 +3316,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(14, true)));
             Write(ref destination, limit, colorVal);
@@ -3346,7 +3346,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3370,7 +3370,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(15, true)));
             Write(ref destination, limit, colorVal);
@@ -3401,7 +3401,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12CommandQueue* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3426,7 +3426,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(16, true)));
             Write(ref destination, limit, colorVal);
@@ -3458,7 +3458,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString
         )
         {
@@ -3467,7 +3467,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(0, true)));
             Write(ref destination, limit, colorVal);
@@ -3482,7 +3482,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0
         )
@@ -3492,7 +3492,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(1, true)));
             Write(ref destination, limit, colorVal);
@@ -3509,7 +3509,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1
@@ -3520,7 +3520,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(2, true)));
             Write(ref destination, limit, colorVal);
@@ -3538,7 +3538,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3550,7 +3550,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(3, true)));
             Write(ref destination, limit, colorVal);
@@ -3569,7 +3569,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3582,7 +3582,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(4, true)));
             Write(ref destination, limit, colorVal);
@@ -3602,7 +3602,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3616,7 +3616,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(5, true)));
             Write(ref destination, limit, colorVal);
@@ -3637,7 +3637,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3652,7 +3652,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(6, true)));
             Write(ref destination, limit, colorVal);
@@ -3674,7 +3674,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3690,7 +3690,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(7, true)));
             Write(ref destination, limit, colorVal);
@@ -3713,7 +3713,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3730,7 +3730,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(8, true)));
             Write(ref destination, limit, colorVal);
@@ -3754,7 +3754,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3772,7 +3772,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(9, true)));
             Write(ref destination, limit, colorVal);
@@ -3797,7 +3797,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3816,7 +3816,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(10, true)));
             Write(ref destination, limit, colorVal);
@@ -3842,7 +3842,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3862,7 +3862,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(11, true)));
             Write(ref destination, limit, colorVal);
@@ -3889,7 +3889,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3910,7 +3910,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(12, true)));
             Write(ref destination, limit, colorVal);
@@ -3938,7 +3938,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -3960,7 +3960,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(13, true)));
             Write(ref destination, limit, colorVal);
@@ -3989,7 +3989,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -4012,7 +4012,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(14, true)));
             Write(ref destination, limit, colorVal);
@@ -4042,7 +4042,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -4066,7 +4066,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(15, true)));
             Write(ref destination, limit, colorVal);
@@ -4097,7 +4097,7 @@ namespace PIX.NET
         [Conditional("USE_PIX")]
         public static void SetMarker<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             ID3D12GraphicsCommandList* context,
-            in PIXColor color,
+            in Argb32 color,
             ReadOnlySpan<char> formatString,
             T0 t0,
             T1 t1,
@@ -4122,7 +4122,7 @@ namespace PIX.NET
             ulong* buffer = stackalloc ulong[EventsGraphicsRecordSpaceQwords];
             ulong* destination = buffer;
             ulong* limit = (buffer + EventsGraphicsRecordSpaceQwords) - EventsReservedTailSpaceQwords;
-            var colorVal = PIXColor.GetAs32BitArgb(color);
+            var colorVal = Argb32.GetAs32BitArgb(color);
 
             Write(ref destination, limit, EncodeEventInfo(time, EventTypeInferer.SetMarker(16, true)));
             Write(ref destination, limit, colorVal);
