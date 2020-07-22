@@ -66,6 +66,10 @@ namespace PIX.NET
             {
                 Debug.Fail("damn bro this ain't good");
             }
+            else
+            {
+                PIXMethods.EndEvent();
+            }
         }
 
         public void Dispose() => EndEvent();
