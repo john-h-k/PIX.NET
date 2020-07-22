@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -6,33 +7,7 @@ using TerraFX.Interop;
 
 namespace PIX.NET
 {
-    internal static class StackSentinel
-    {
-        public const int MaxStackallocBytes = 512;
-
-        public static bool SafeToStackalloc<T>(int count)
-            => Unsafe.SizeOf<T>() * count <= MaxStackallocBytes;
-    }
-    
-    internal static class ThrowHelper
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ThrowIfFailed(int hr, [CallerArgumentExpression("hr")] string? name = null)
-        {
-            if (Windows.FAILED(hr))
-            {
-                ThrowExternalException(name!, hr);
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void ThrowExternalException(string message, int hr)
-        {
-            throw new ExternalException(message, hr);
-        }
-    }
-
-    internal static unsafe class NativeMethods
+    public static unsafe class NativeMethods
     {
         /*
          *
@@ -61,7 +36,7 @@ namespace PIX.NET
 
         // TODO save to prevent transcoding costs
 
-        private static int Utf8Length(ReadOnlySpan<char> s) => Encoding.UTF8.GetMaxByteCount(s.Length);
+        private static int Utf8Length(ReadOnlySpan<char> s) => System.Text.Encoding.UTF8.GetMaxByteCount(s.Length);
 
         /// <summary>
         ///
@@ -77,7 +52,7 @@ namespace PIX.NET
         {
             var length = Utf8Length(message);
             var buff = StackSentinel.SafeToStackalloc<byte>(length) ? stackalloc byte[length] : new byte[length];
-            Encoding.UTF8.GetBytes(message, buff);
+            System.Text.Encoding.UTF8.GetBytes(message, buff);
 
             var hr = _PIXBeginEventOnCommandList(commandList, PIXColor.GetAs32BitArgb(color),
                 (byte*) Unsafe.AsPointer(ref MemoryMarshal.GetReference(buff)));
@@ -85,10 +60,6 @@ namespace PIX.NET
             ThrowHelper.ThrowIfFailed(hr);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="commandList"></param>
         public static void EndEventOnCommandList(ID3D12GraphicsCommandList* commandList)
         {
             var hr = _PIXEndEventOnCommandList(commandList);
@@ -96,13 +67,7 @@ namespace PIX.NET
             ThrowHelper.ThrowIfFailed(hr);
         }
 
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="commandList"></param>
-        /// <param name="color"></param>
-        /// <param name="message"></param>
+        
         public static void SetMarkerOnCommandList(
             ID3D12GraphicsCommandList* commandList,
             PIXColor color,
@@ -111,7 +76,7 @@ namespace PIX.NET
         {
             var length = Utf8Length(message);
             var buff = StackSentinel.SafeToStackalloc<byte>(length) ? stackalloc byte[length] : new byte[length];
-            Encoding.UTF8.GetBytes(message, buff);
+            System.Text.Encoding.UTF8.GetBytes(message, buff);
 
             var hr = _PIXSetMarkerOnCommandList(commandList, PIXColor.GetAs32BitArgb(color),
                 (byte*) Unsafe.AsPointer(ref MemoryMarshal.GetReference(buff)));
@@ -142,7 +107,7 @@ namespace PIX.NET
             bool getEarliestTime
         );
 
-        internal static ulong PIXEventsReplaceBlock(
+        public static ulong PIXEventsReplaceBlock(
             PIXEventsThreadInfo* threadInfo,
             bool getEarliestTime
         )
@@ -154,7 +119,12 @@ namespace PIX.NET
         [DllImport(LibraryName, EntryPoint = "PIXGetThreadInfo")]
         private static extern PIXEventsThreadInfo* _PIXGetThreadInfo();
 
-        internal static PIXEventsThreadInfo* PIXGetThreadInfo() => _PIXGetThreadInfo();
+        public static PIXEventsThreadInfo* PIXGetThreadInfo()
+        {
+            var info = _PIXGetThreadInfo();
+            Debug.Assert(info != null, "uh oh");
+            return info;
+        }
 
         // Notifies PIX that an event handle was set as a result of a D3D12 fence being signaled.
         // The event specified must have the same handle value as the handle
@@ -169,6 +139,14 @@ namespace PIX.NET
             LARGE_INTEGER time = default;
             Kernel32.QueryPerformanceCounter(&time);
             return (ulong) time.QuadPart;
+        }
+
+        [DllImport(LibraryName, EntryPoint = "PIXReportCounter")]
+        private static extern void _PIXReportCounter(char* name, float value);
+
+        internal static void PIXReportCounter(char* name, float value)
+        {
+            _PIXReportCounter(name, value);
         }
     }
 }
