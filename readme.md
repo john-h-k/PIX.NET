@@ -12,3 +12,15 @@ PIX uses C-style formats (`%d` or `%f` rather than `{0}` as in C#). Up to 16 for
 If your format string ends up being more than 512 bytes (256 characters), it is truncated - this is a limitation of PIX.
 
 To create events, the process is the same, except you use `PIXMethods.BeginEvent` to begin the event and `PIXMethods.EndEvent` to end it. Alternative, you can use `ScopedEvent`, by calling `ScopedEvent.Create` with the same arguments you would call `PIXMethods.BeginEvent` with, and dispose it to end the event (likely using `using` blocks or locals).
+
+You can report an arbitrary custom counter for display in pix using `PIXMethods.PIXReportCounter`. Quite self explanatory, give it a name and a value and it will pass it to PIX.
+
+Timing captures can show when a thread wakes up as the result of a fence being signaled. This needs some help from the application in the form of `PIXMethods.NotifyWakeFromFenceSignal`. This notifies PIX that an event handle was set as a result of a D3D12 fence being signaled. The event specified must have the same handle value as the handle used in ID3D12Fence::SetEventOnCompletion.
+
+You can use the `ProgrammaticCapture` type to create captures in code. Call `BeginCapture` and `EndCapture` to take captures. If PIX is not attached, these methods don't do anything. Use `ProgrammaticCapture.IsPixAttached` to determine whether PIX is attached
+
+## See also
+
+* https://devblogs.microsoft.com/pix/programmatic-capture/
+
+* https://devblogs.microsoft.com/pix/winpixeventruntime/
